@@ -477,6 +477,82 @@ for (let i = 0; i < navigationLinks.length; i++) {
             scrollRows.forEach(row => observer.observe(row));
         });
 
+const certData = {
+  cert1: {
+    title: "Meta Front-End Developer",
+    issuer: "Coursera",
+    year: "2024",
+    file: "./assets/images/cert/CERT1.png", // Image file path
+  },
+  cert2: {
+    title: "Python for Everybody",
+    issuer: "University of Michigan",
+    year: "2023",
+    file: "./assets/images/cert/CERT2.png", // Image file path
+  },
+  cert3: {
+    title: "PDF Certificate Example",
+    issuer: "Another Issuer",
+    year: "2022",
+    file: "./assets/pdf/Mihir_Parmar.pdf", // PDF file path
+  },
+};
+
+function openCertModal(certId) {
+  const cert = certData[certId];
+  if (!cert) return;
+
+  const certViewer = document.getElementById("certViewer");
+  const fileExtension = cert.file.split(".").pop().toLowerCase();
+
+  certViewer.innerHTML = ""; // Clear previous content
+
+  if (fileExtension === "pdf") {
+    const embed = document.createElement("embed");
+    embed.src = cert.file;
+    embed.type = "application/pdf";
+    certViewer.appendChild(embed);
+  } else {
+    const img = document.createElement("img");
+    img.src = cert.file;
+    img.alt = `Certificate for ${cert.title}`;
+    certViewer.appendChild(img);
+  }
+
+  document.getElementById("certModalTitle").textContent = cert.title;
+  document.getElementById("certModalIssuer").textContent = `Issued by ${cert.issuer}`;
+  document.getElementById("certModalYear").textContent = `Year: ${cert.year}`;
+
+  document.getElementById("certModal").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function closeCertModal() {
+  const modal = document.getElementById("certModal");
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+  document.getElementById("certViewer").innerHTML = ""; // Clear the content
+}
+
+// Global event listeners
+document.addEventListener('click', (event) => {
+    // Close modal if the background is clicked
+    if (event.target === document.getElementById('certModal')) {
+        closeCertModal();
+    }
+});
+
+// Close modal with the 'Escape' key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeCertModal();
+    }
+});
+
+// Disable right-click on the modal content
+document
+  .getElementById("certModal")
+  .addEventListener("contextmenu", (e) => e.preventDefault());
 
 // 'use strict';
 

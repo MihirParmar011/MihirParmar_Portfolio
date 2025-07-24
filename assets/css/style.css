@@ -2551,7 +2551,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 /* resume skill section */
 .platform-skills-section {
-  margin-top: 40px;
+  margin-top: 10px;
   background: var(--bg-gradient-jet);
   border-radius: 16px;
   padding: 20px;
