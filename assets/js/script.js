@@ -438,8 +438,8 @@ for (let i = 0; i < navigationLinks.length; i++) {
             scrollRows.forEach((row, index) => {
                 const track = row.querySelector(".scroll-track");
                 const items = [...track.children];
-                const speed = row.dataset.speed || 10;
-                
+                const speed = /*row.dataset.speed* ||*/ 250;
+
                 // Duplicate items for seamless loop
                 const duplicateCount = Math.ceil(window.innerWidth / 130) + 2;
                 for (let i = 0; i < duplicateCount; i++) {
